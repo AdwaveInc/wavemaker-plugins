@@ -1,0 +1,33 @@
+{
+  "name": "adwave",
+  "owner": {
+    "name": "Adwave",
+    "email": "support@adwave.com"
+  },
+  "metadata": {
+    "description": "Adwave's plugins: Wavemaker creative generation."
+  },
+  "plugins": [
+    {
+      "name": "wavemaker",
+      "source": "./",
+      "description": "Generate and edit images, video, music, voice, sound effects, ads and HTML5 banners with Wavemaker.",
+      "version": "2.0.0",
+      "category": "design",
+      "homepage": "https://wavemaker.io",
+      "keywords": [
+        "wavemaker",
+        "image-generation",
+        "video-generation",
+        "music",
+        "voiceover",
+        "text-to-speech",
+        "sound-effects",
+        "ads",
+        "html5-banners",
+        "creative",
+        "mcp"
+      ]
+    }
+  ]
+}

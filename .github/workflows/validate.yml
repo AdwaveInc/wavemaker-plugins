@@ -1,4 +1,4 @@
-name: Validate plugin
+name: Validate
 
 on:
   push:
@@ -12,5 +12,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Validate Cursor plugin manifest
-        run: node scripts/validate-plugin.mjs
+      - name: Every host manifest
+        run: node scripts/validate.mjs
+      - name: MCP Registry server.json
+        run: |
+          curl -sL "https://github.com/modelcontextprotocol/registry/releases/download/v1.8.5/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher validate

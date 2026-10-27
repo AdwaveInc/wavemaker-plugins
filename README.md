@@ -1,91 +1,126 @@
-# Wavemaker for Cursor
+# Wavemaker for AI agents
 
-Cursor Marketplace plugin for [Wavemaker](https://wavemaker.adwave.com) — Adwave's AI tool for videos, static ads, and related media.
+[Wavemaker](https://wavemaker.io) is a complete creative studio your agent can use. Ask for a
+product video, a set of ad images, a jingle, a voiceover, sound effects or a full HTML5 banner
+set, and Wavemaker writes, designs, shoots, scores and edits it, then checks the result against
+the spec of where it is going (YouTube, TikTok, Instagram, Meta, Google Ads, IAB display).
 
-This repository **is** the plugin. Submit `https://github.com/AdwaveInc/wavemaker-cursor-plugin` at [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish). No extra packaging is required.
+This repository holds Wavemaker's plugin for every agent host. They all connect the same remote
+MCP server and carry the same skill:
 
-## What it does
+| Setting | Value |
+| --- | --- |
+| MCP server | `https://api.wavemaker.io/mcp` (Streamable HTTP) |
+| Sign-in | OAuth 2.1 with PKCE; dynamic client registration and client ID metadata documents; scopes `read run write` |
+| Without OAuth | `Authorization: Bearer <workspace key>` from the Wavemaker web app |
+| Registry name | `io.wavemaker/wavemaker` on the [official MCP Registry](https://registry.modelcontextprotocol.io) |
 
-The plugin connects Cursor (and Cloud Agents / Grok Bot) to Wavemaker's public HTTPS MCP server:
-
-```json
-{
-  "mcpServers": {
-    "wavemaker": {
-      "url": "https://api.wavemaker.io/mcp"
-    }
-  }
-}
-```
-
-Auth is **OAuth 2.1 + PKCE + dynamic client registration**. There is no API key, client secret, header, or other credential in this repo or in the plugin config. The MCP URL is `https://api.wavemaker.io/mcp` only — `wavemaker.adwave.com/mcp` 404s.
+There is no key or secret in this repository. Sign-in opens a browser page; a new account is
+free at [wavemaker.io](https://wavemaker.io). Generation spends your workspace's credits, and
+the agent prices work before spending it.
 
 ## Install
 
-### From the Cursor Marketplace (after listing)
+**Claude Code**
 
-1. Open **Cursor Settings → Plugins** (or **Customize**).
-2. Search for **Wavemaker**.
-3. Click **Install**.
-4. Complete the OAuth connect flow below.
-
-Or run `/add-plugin wavemaker` in chat.
-
-### From this repository (local review)
-
-1. Clone the repo.
-2. Symlink it into Cursor's local plugin folder:
-
-   ```bash
-   ln -s /path/to/wavemaker-cursor-plugin ~/.cursor/plugins/local/wavemaker
-   ```
-
-3. Restart Cursor, or run **Developer: Reload Window**.
-4. Complete the OAuth connect flow below.
-
-## OAuth connect flow
-
-Wavemaker MCP uses OAuth 2.1 + PKCE (`S256` only) and dynamic client registration. Cursor handles discovery, DCR, and token storage. You do not paste a key.
-
-1. After install, enable the **wavemaker** MCP server if it is not already on.
-2. The first tool call (or first connect) opens a browser tab at Wavemaker's authorize endpoint.
-3. Sign in with your Wavemaker account at [wavemaker.adwave.com](https://wavemaker.adwave.com) or [wavemaker.io](https://wavemaker.io) — same account on both.
-4. Approve access. Cursor stores the issued tokens locally.
-5. Later calls reuse the access token (1 hour) and refresh token (30 days).
-
-If the browser prompt does not appear, toggle the server off and on in **Settings → MCP**, then retry a Wavemaker action in chat.
-
-Cloud Agents and Grok Bot can use this plugin because the MCP URL is public HTTPS. They cannot use localhost or stdio-only servers. You still need to complete OAuth for the agent environment.
-
-## Using it
-
-Ask Cursor to generate a video, a static ad, or related media. Examples:
-
-- "Create a 30-second 9:16 ad for https://example.com"
-- "Estimate credits for a 15-second YouTube spot, then generate it if I confirm"
-- "Check my Wavemaker credit balance"
-
-The bundled skill tells the agent to confirm with the user before every credit-spending generate or render (`generate_and_render`, `generate_video`, `refine_video`, `render_video`, `generate_static_ad`, `edit_static_ad`, `scrape_and_analyze`, `plan_video`, `compose_video`, `upscale_video`, DCO produce tools, and credit-spending `execute_tool` runs). Prefer `get_cost_estimate` / `get_account` when planning.
-
-Generation spends credits. A Wavemaker account with available credits is required. API and MCP access are included on Pro plans and above; see [pricing](https://wavemaker.adwave.com).
-
-## Validate the manifest
-
-```bash
-node scripts/validate-plugin.mjs
+```sh
+/plugin install wavemaker --marketplace AdwaveInc/wavemaker-plugins
 ```
 
-The script checks this repo against Cursor's published plugin rules: kebab-case `name`, closed manifest schema, relative paths, skill frontmatter, HTTPS MCP URL, and no secrets.
+Or `claude plugin marketplace add AdwaveInc/wavemaker-plugins` then
+`claude plugin install wavemaker@adwave`. Run `/mcp` and choose **Authenticate** once.
 
-## Docs
+**Claude (web, desktop, mobile)**: Customize → Connectors → Add custom connector →
+`https://api.wavemaker.io/mcp`.
 
-- Wavemaker: https://wavemaker.adwave.com / https://wavemaker.io
-- Developer docs (REST + MCP): https://wavemaker.adwave.com/developers
-- Cursor plugins: https://cursor.com/docs/reference/plugins
-- Marketplace publish: https://cursor.com/marketplace/publish
+**ChatGPT**: Plugins → + → Add custom MCP server → `https://api.wavemaker.io/mcp`, OAuth.
 
-Logo is the official Wavemaker mark from https://wavemaker.io/favicon.svg, placed on a padded white tile so it reads well in the Cursor UI.
+**Codex**
+
+```sh
+codex plugin marketplace add AdwaveInc/wavemaker-plugins
+```
+
+then install **Wavemaker** from `/plugins`. MCP only: `codex mcp add wavemaker --url
+https://api.wavemaker.io/mcp` and `codex mcp login wavemaker`.
+
+**Cursor and Grok Bot**: install **Wavemaker** from the Cursor Marketplace (Settings →
+Plugins). The MCP server alone installs from the deeplink
+`cursor://anysphere.cursor-deeplink/mcp/install?name=wavemaker&config=eyJ1cmwiOiJodHRwczovL2FwaS53YXZlbWFrZXIuaW8vbWNwIn0=`.
+For a local copy: `ln -s "$PWD" ~/.cursor/plugins/local/wavemaker` and reload the window.
+
+**Grok Build**: install **wavemaker** from the xAI plugin marketplace. Grok Build reads this
+repository's root `plugin.json` and `.mcp.json`.
+
+**Gemini CLI**
+
+```sh
+gemini extensions install https://github.com/AdwaveInc/wavemaker-plugins
+```
+
+**VS Code and GitHub Copilot**: search `@mcp wavemaker` in Extensions, or
+
+```sh
+code --add-mcp '{"name":"wavemaker","type":"http","url":"https://api.wavemaker.io/mcp"}'
+```
+
+**OpenClaw**
+
+```sh
+openclaw mcp add wavemaker --url https://api.wavemaker.io/mcp --transport streamable-http
+openclaw mcp login wavemaker
+openclaw skills install wavemaker      # the skill, from ClawHub
+```
+
+**Hermes Agent**: add to `~/.hermes/config.yaml`, then `hermes mcp login wavemaker`:
+
+```yaml
+mcp_servers:
+  wavemaker:
+    url: https://api.wavemaker.io/mcp
+    auth: oauth
+```
+
+and the skill with `hermes skills tap add AdwaveInc/wavemaker-plugins`.
+
+**Any other skill-aware agent**: `npx skills add AdwaveInc/wavemaker-plugins`.
+
+**Windsurf, Zed, Cline, Goose, Kiro and other MCP hosts**: add the server URL above as a
+remote (Streamable HTTP) server. A host that only runs local servers can use
+`npx -y mcp-remote https://api.wavemaker.io/mcp`.
+
+## What's inside
+
+| Path | For |
+| --- | --- |
+| `plugin.json`, `mcp.json` | [Agent Plugins 1.0](https://agent-plugins.org): Codex and ChatGPT (with `extensions.com.openai`), Cursor, Kiro, Grok Build |
+| `.cursor-plugin/plugin.json` | Cursor Marketplace and Grok Bot |
+| `.claude-plugin/`, `.mcp.json` | Claude Code plugin and the `adwave` marketplace (also Copilot CLI, OpenClaw bundles) |
+| `.agents/plugins/marketplace.json` | Codex repo marketplace |
+| `gemini-extension.json` | Gemini CLI extension |
+| `server.json` | Official MCP Registry entry |
+| `skills/wavemaker/SKILL.md` | The [Agent Skill](https://agentskills.io) every host loads: when to use Wavemaker and how to drive its twelve tools |
+| `llms-install.md` | Install steps for agents that install servers themselves (Cline) |
+
+The server also publishes an [MCP Server Card](https://api.wavemaker.io/mcp/server-card) and
+an [AI Catalog](https://wavemaker.io/.well-known/ai-catalog.json).
+
+## Try it
+
+- "Make a 15-second vertical product video for https://example.com"
+- "Design display banners for this campaign in the standard IAB sizes"
+- "Write and produce a 30-second jingle with a voiceover, then check its loudness for YouTube"
+
+## Develop
+
+`node scripts/validate.mjs` checks every manifest against its host's rules and that they agree
+on name, version and server URL. `claude plugin validate --strict .` and
+`mcp-publisher validate` check the Claude and registry manifests. Releases bump `version` in
+every manifest together (see [CHANGELOG.md](CHANGELOG.md)).
+
+Docs: [connect an agent](https://wavemaker.io/docs/mcp) · [help](https://wavemaker.io/help) ·
+[privacy](https://wavemaker.io/privacy) · [terms](https://wavemaker.io/terms) · support@adwave.com
 
 ## License
 
-MIT. Author: Adwave.
+MIT, © Adwave. Copies published to ClawHub are distributed under MIT-0, as ClawHub requires.

@@ -1,0 +1,19 @@
+name: Publish to the MCP Registry
+
+# Publishes server.json as io.wavemaker/wavemaker. The namespace is proven by the public key
+# that https://wavemaker.io/.well-known/mcp-registry-auth serves; the matching ed25519 seed
+# (hex) is the MCP_REGISTRY_PRIVATE_KEY secret.
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          curl -sL "https://github.com/modelcontextprotocol/registry/releases/download/v1.8.5/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher login http --domain wavemaker.io --private-key "${{ secrets.MCP_REGISTRY_PRIVATE_KEY }}"
+          ./mcp-publisher publish

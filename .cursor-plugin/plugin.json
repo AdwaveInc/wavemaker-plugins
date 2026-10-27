@@ -1,33 +1,35 @@
 {
   "name": "wavemaker",
   "displayName": "Wavemaker",
-  "version": "1.0.0",
-  "minClientVersions": {
-    "cursor": "3.13.0"
-  },
-  "description": "Generate videos, static ads, and related media with the Wavemaker MCP server.",
+  "version": "2.0.0",
+  "description": "Generate and edit images, video, music, voice, sound effects, ads and HTML5 banners with Wavemaker.",
   "author": {
     "name": "Adwave",
     "email": "support@adwave.com"
   },
   "publisher": "Adwave",
-  "homepage": "https://wavemaker.adwave.com/developers",
-  "repository": "https://github.com/AdwaveInc/wavemaker-cursor-plugin",
+  "homepage": "https://wavemaker.io",
+  "repository": "https://github.com/AdwaveInc/wavemaker-plugins",
   "license": "MIT",
-  "logo": "assets/logo.svg",
+  "logo": "assets/logo.png",
   "keywords": [
     "wavemaker",
-    "adwave",
-    "video",
+    "image-generation",
+    "video-generation",
+    "music",
+    "voiceover",
+    "text-to-speech",
+    "sound-effects",
     "ads",
-    "static-ads",
-    "mcp",
-    "generative-media"
+    "html5-banners",
+    "creative",
+    "mcp"
   ],
   "category": "integrations",
   "tags": [
-    "wavemaker",
+    "image",
     "video",
+    "audio",
     "ads",
     "mcp"
   ],

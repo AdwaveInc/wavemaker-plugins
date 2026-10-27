@@ -1,10 +1,17 @@
 # Changelog
 
-All notable changes to this plugin will be documented here.
+## 2.0.0 (2026-10-27)
 
-## 1.0.0 — initial release
+- One repository for every host (renamed from `wavemaker-cursor-plugin`): Agent Plugins root
+  manifest with OpenAI listing metadata (Codex, ChatGPT, Cursor, Kiro, Grok Build), Cursor and
+  Grok Bot, Claude Code plugin and `adwave` marketplace, Codex repo marketplace, Gemini CLI
+  extension, and `server.json` for the official MCP Registry (`io.wavemaker/wavemaker`).
+- The skill now covers the twelve current tools (`search`, `read`, `write`, `generate`, `edit`,
+  `compose`, `watch`, `listen`, `compare`, `review`, `deliver`, `run`), prices work before
+  spending, follows jobs without resubmitting, and tells the agent when to use Wavemaker.
+- Current Wavemaker icon; homepage `https://wavemaker.io`.
+- `scripts/validate.mjs` checks every manifest; CI runs it with the Claude and registry validators.
 
-- Added the `wavemaker` Cursor Plugin manifest for marketplace submission.
-- Added the `wavemaker` MCP server pointing at `https://api.wavemaker.io/mcp` only (OAuth 2.1 + PKCE + DCR, no API key).
-- Added a short skill that confirms before every credit-spending generate or render.
-- Logo: official Wavemaker mark from https://wavemaker.io/favicon.svg, on a padded white tile.
+## 1.0.0
+
+- Cursor Marketplace plugin for the Wavemaker MCP server.
