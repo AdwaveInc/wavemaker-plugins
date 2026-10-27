@@ -1,0 +1,32 @@
+{
+  "name": "wavemaker",
+  "displayName": "Wavemaker",
+  "version": "2.0.0",
+  "description": "Generate and edit images, video, music, voice, sound effects, ads and HTML5 banners with Wavemaker.",
+  "author": {
+    "name": "Adwave",
+    "email": "support@adwave.com",
+    "url": "https://wavemaker.io"
+  },
+  "homepage": "https://wavemaker.io",
+  "repository": "https://github.com/AdwaveInc/wavemaker-plugins",
+  "license": "MIT",
+  "keywords": [
+    "wavemaker",
+    "image-generation",
+    "video-generation",
+    "music",
+    "voiceover",
+    "text-to-speech",
+    "sound-effects",
+    "ads",
+    "html5-banners",
+    "creative",
+    "mcp"
+  ],
+  "icon": "./assets/logo.png",
+  "documentationUrl": "https://wavemaker.io/docs/mcp",
+  "supportUrl": "https://wavemaker.io/help",
+  "privacyPolicyUrl": "https://wavemaker.io/privacy",
+  "termsOfServiceUrl": "https://wavemaker.io/terms"
+}

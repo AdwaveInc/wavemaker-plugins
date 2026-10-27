@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.wavemaker/wavemaker",
+  "title": "Wavemaker",
+  "description": "Generate and edit images, video, music, voice, sound effects, ads and HTML5 banners.",
+  "version": "2.0.0",
+  "websiteUrl": "https://wavemaker.io",
+  "repository": {
+    "url": "https://github.com/AdwaveInc/wavemaker-plugins",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://wavemaker.io/assets/wavemaker-icon.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "192x192"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.wavemaker.io/mcp"
+    }
+  ]
+}

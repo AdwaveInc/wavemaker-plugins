@@ -1,0 +1,54 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "wavemaker",
+  "version": "2.0.0",
+  "description": "Generate and edit images, video, music, voice, sound effects, ads and HTML5 banners with Wavemaker.",
+  "author": {
+    "name": "Adwave",
+    "email": "support@adwave.com",
+    "url": "https://wavemaker.io"
+  },
+  "homepage": "https://wavemaker.io",
+  "repository": "https://github.com/AdwaveInc/wavemaker-plugins",
+  "license": "MIT",
+  "keywords": [
+    "wavemaker",
+    "image-generation",
+    "video-generation",
+    "music",
+    "voiceover",
+    "text-to-speech",
+    "sound-effects",
+    "ads",
+    "html5-banners",
+    "creative",
+    "mcp"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Wavemaker",
+        "shortDescription": "Images, video, music and ads",
+        "longDescription": "Wavemaker is a complete creative studio your agent can use. Ask for a product video, a set of ad images, a jingle, a voiceover, a talking spokesperson, sound effects or a full HTML5 banner set, and Wavemaker writes, designs, shoots, scores and edits it. It picks from leading image, video, music and speech models, edits and reframes existing media, renders timelines into finished cuts, and checks every deliverable against the spec of its destination (YouTube, TikTok, Instagram, Meta, Google Ads and IAB display sizes). Sign in with your Wavemaker account; your files and projects stay in your workspace.",
+        "developerName": "Adwave",
+        "category": "Design",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://wavemaker.io",
+        "supportURL": "https://wavemaker.io/help",
+        "privacyPolicyURL": "https://wavemaker.io/privacy",
+        "termsOfServiceURL": "https://wavemaker.io/terms",
+        "defaultPrompt": [
+          "Make a 15-second vertical product video for my landing page",
+          "Design a set of display ad banners in the standard IAB sizes",
+          "Write and produce a 30-second jingle with a voiceover"
+        ],
+        "brandColor": "#B86FA8",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      }
+    }
+  }
+}

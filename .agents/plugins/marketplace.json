@@ -1,0 +1,20 @@
+{
+  "name": "adwave",
+  "interface": {
+    "displayName": "Adwave"
+  },
+  "plugins": [
+    {
+      "name": "wavemaker",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    }
+  ]
+}
