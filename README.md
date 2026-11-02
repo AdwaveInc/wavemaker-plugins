@@ -13,7 +13,7 @@ MCP server and carry the same skill:
 | MCP server | `https://api.wavemaker.io/mcp` (Streamable HTTP) |
 | Sign-in | OAuth 2.1 with PKCE; dynamic client registration and client ID metadata documents; scopes `read run write` |
 | Without OAuth | `Authorization: Bearer <workspace key>` from the Wavemaker web app |
-| Registry name | `io.wavemaker/wavemaker` on the [official MCP Registry](https://registry.modelcontextprotocol.io) |
+| Registry entry | `io.wavemaker/wavemaker` (published from this repository's `server.json` to the [official MCP Registry](https://registry.modelcontextprotocol.io); not listed there yet) |
 
 There is no key or secret in this repository. Sign-in opens a browser page; a new account is
 free at [wavemaker.io](https://wavemaker.io). Generation spends your workspace's credits, and
@@ -44,10 +44,15 @@ codex plugin marketplace add AdwaveInc/wavemaker-plugins
 then install **Wavemaker** from `/plugins`. MCP only: `codex mcp add wavemaker --url
 https://api.wavemaker.io/mcp` and `codex mcp login wavemaker`.
 
-**Cursor and Grok Bot**: install **Wavemaker** from the Cursor Marketplace (Settings →
-Plugins). The MCP server alone installs from the deeplink
-`cursor://anysphere.cursor-deeplink/mcp/install?name=wavemaker&config=eyJ1cmwiOiJodHRwczovL2FwaS53YXZlbWFrZXIuaW8vbWNwIn0=`.
-For a local copy: `ln -s "$PWD" ~/.cursor/plugins/local/wavemaker` and reload the window.
+**Cursor and Grok Bot**: the plugin is not in the Cursor Marketplace yet. Add the MCP server
+in one click with
+[Add to Cursor](https://cursor.com/en/install-mcp?name=wavemaker&config=eyJ1cmwiOiJodHRwczovL2FwaS53YXZlbWFrZXIuaW8vbWNwIn0=)
+(deeplink
+`cursor://anysphere.cursor-deeplink/mcp/install?name=wavemaker&config=eyJ1cmwiOiJodHRwczovL2FwaS53YXZlbWFrZXIuaW8vbWNwIn0=`),
+or add `{"mcpServers": {"wavemaker": {"url": "https://api.wavemaker.io/mcp"}}}` to
+`~/.cursor/mcp.json`. For the full plugin with the skill, use a local copy:
+`ln -s "$PWD" ~/.cursor/plugins/local/wavemaker` and reload the window.
+Where Wavemaker is listed: [docs](https://wavemaker.io/docs/mcp#where-wavemaker-is-listed).
 
 **Grok Build**: install **wavemaker** from the xAI plugin marketplace. Grok Build reads this
 repository's root `plugin.json` and `.mcp.json`.
