@@ -12,7 +12,7 @@
       "name": "wavemaker",
       "source": "./",
       "description": "Generate and edit images, video, music, voice, sound effects, ads and HTML5 banners with Wavemaker.",
-      "version": "2.0.0",
+      "version": "3.0.0",
       "category": "design",
       "homepage": "https://wavemaker.io",
       "keywords": [
